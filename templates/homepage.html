@@ -1,0 +1,78 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <!-- Chargement des scripts délocalisé -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+  
+  <!-- Chargement des scripts en local -->
+  <!-- <script src="node_modules/@mediapipe/camera_utils/camera_utils.js"></script>
+  <script src="node_modules/@mediapipe/drawing_utils/drawing_utils.js"></script>  
+  <script src="node_modules/@mediapipe/control_utils/control_utils.js"></script>
+  <script src="node_modules/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>-->
+  <script src="/static/script.js" defer></script> <!-- defer permet d'executer le script après le chargement de la page -->
+
+  <link rel="icon" type="image/x-icon" href="/static/ET.png">
+  <link href="/static/style.css" rel="stylesheet">
+</head>
+
+<body class="main_div">
+
+    <!-- Canvas (retour caméra, buffer, interface) -->
+    <video class="input_video" hidden="true"></video>
+    <canvas class="canvas_style" id="painting_canvas"></canvas>
+    
+    <!-- Interface de selection des couleurs -->
+    <div class="color_table">
+      <div onclick="setCurrentColor(event)" style="background-color: yellow;"></div>
+      <div onclick="setCurrentColor(event)" style="background-color: #00ff00;"></div>
+      <div onclick="setCurrentColor(event)" style="background-color: #00d0ff;"></div>
+      <div onclick="setCurrentColor(event)" style="background-color: #ff0000;"></div>
+      <div onclick="setCurrentColor(event)" style="background-color: #cc00ff;"></div>
+      <div onclick="setCurrentColor(event)" style="background-color: #000000;"></div>
+      <div onclick="setCurrentColor(event)" style="background-color: #FFFFFF;"></div>
+      <img src="/static/eraser.png" onclick="setMode('erase')" style="background-color: #ffffff00;"></img>
+      <img onclick="clearBackground()" src="/static/trash.png"></img>
+    </div>
+
+    <canvas class="canvas_style" id="camera_canvas" width="1280px" height="720px"></canvas>
+    
+    <div class="cursor" id="cursor"></div>
+    <img src="/static/ub_logo.png" id="logo">
+
+    <button class="button" id="btnPlay">PLAY</button>
+
+</body>
+
+<script>
+
+  function setMode(mode)
+  {
+    if(mode === 'erase')
+    {
+      gEraseMode = true;
+      cursor.style.borderRadius = 0;
+    }else // Painting
+    {
+      gEraseMode = false;
+      cursor.style.borderRadius = '100%';
+    }
+  }
+
+  function setCurrentColor(event)
+  {
+    console.log(event.srcElement.style.backgroundColor);
+    ctxPainting.strokeStyle = event.srcElement.style.backgroundColor;
+    setMode('paint');
+  }
+
+  function clearBackground()
+  {
+    ctxPainting.clearRect(0, 0, canvasCamera.width, canvasCamera.height);
+  }
+
+</script>
+</html>

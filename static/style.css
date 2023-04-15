@@ -1,0 +1,117 @@
+.button {
+  display: inline-flex;
+  flex-wrap: wrap;
+  width: 140px;
+  height: 70px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 10px #999;
+  filter: drop-shadow(0px 11px 4px#AAAAAA);
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-70px, -100px);
+  justify-content: center;
+  border: 5px solid #fff;
+  align-content: center;
+}
+
+#help
+{
+  display: block;
+  position: relative;
+  margin-left: auto;
+  margin-top: auto;
+}
+
+.button:hover
+{
+  background-color: #38863b;
+  color: gainsboro;
+}
+
+.button:active
+{
+  background-color: #3e8e41;
+  box-shadow: 0 5px #8c8c8c;
+  transform: translate(-70px, -95px);
+}
+
+.canvas_style
+{
+  transform: scaleX(-1);
+  position: absolute;
+}
+
+#painting_canvas
+{
+  transform: scaleX(1);
+  position: absolute;
+}
+
+.main_div
+{
+  margin: 0px;
+  resize: none;
+  display: flex;
+}
+
+.color_table
+{
+  display: grid;
+  position: absolute;
+  row-gap: 25px;
+  margin-left: 30px;
+  align-items: center;
+  align-self: center;
+}
+
+.color_table > div, .color_table > img
+{
+  transition: transform 0.3s;
+  border: 5px solid rgb(157, 27, 27);
+  border-radius: 25%;
+  width: 35px;
+  height: 35px;
+  align-self: center;
+  justify-self: center;
+}
+
+.color_table > div:hover, .color_table > img:hover
+{
+  transform: scale(1.3);
+}
+
+.color_table > img
+{
+  width: 50px;
+  height: 50px;
+  border: 0px solid rgb(157, 27, 27);
+}
+
+.cursor
+{
+  position: fixed;
+  border: 5px solid rgb(0, 0, 0);
+  border-radius: 100%;
+  width: 20px;
+  height: 20px;
+}
+
+#logo
+{
+  position: absolute;
+  width: 100px;
+  height: 60px;
+  margin-left: 100%;
+  transform: translate(-120px, 20px);
+  filter: opacity(0.6);
+}
